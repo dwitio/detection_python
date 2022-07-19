@@ -16,7 +16,7 @@ while(True):
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
     body = fullbody_cascade.detectMultiScale(gray, 1.9, 1)
     print('Wajah : ',len(faces))
-    print('Wajah : ',len(body))
+    print('Body : ',len(body))
     
     for (x,y,w,h) in faces:
          cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
@@ -36,7 +36,9 @@ while(True):
             cv2.rectangle(roi_color, (sx, sy), ((sx + sw), (sy + sh)), (0, 0, 255), 2)
 
     for (x, y, w, h) in body:
-        cv2.rectangle(frame, (x, y), ((x + w), (y + h)), (0, 0, 0), 5)
+        cv2.rectangle(frame, (x, y), ((x + w, y + h)), (0, 0, 0), 5)
+
+        cv2.putText(frame, "Full Body", (x, y+h), cv2.FONT_HERSHEY_SCRIPT_COMPLEX, 0.5, (0, 0, 0), 2)
 
     cv2.imshow('WEBCAM',frame)
     close = cv2.waitKey(1) & 0xFF 
