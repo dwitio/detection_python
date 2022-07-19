@@ -2,7 +2,7 @@ import cv2
 
 cam = cv2.VideoCapture(0)
 cam.set(3, 640) 
-cam.set(4, 480) 
+cam.set(4, 480)
 
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 fullbody_cascade = cv2.CascadeClassifier('haarcascade_fullbody.xml')
@@ -14,8 +14,9 @@ while(True):
     retV, frame = cam.read()   
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    body = fullbody_cascade.detectMultiScale(gray, 1.1, 4)
-    print(len(faces))
+    body = fullbody_cascade.detectMultiScale(gray, 1.9, 1)
+    print('Wajah : ',len(faces))
+    print('Wajah : ',len(body))
     
     for (x,y,w,h) in faces:
          cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
